@@ -26,10 +26,15 @@ def sent_detector():
 
     # pass the response to emotion_detector function and store the result
     response = emotion_detector(text_to_detect)
+    # error handle
+    if response["dominant emotion"] is None:
+        return "Invalid text! Please try again!"
+    
+    # format output to html human readable.
     text = f"For the given statement, the system response is: <br>"
     for key, value in response.items():
         text += f"{key} : {value} <br>"
-        
+
     return text
 
 @app.route("/")
