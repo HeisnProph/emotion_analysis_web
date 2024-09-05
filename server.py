@@ -26,12 +26,11 @@ def sent_detector():
 
     # pass the response to emotion_detector function and store the result
     response = emotion_detector(text_to_detect)
-
-    # error handler
-    if response is None:
-        return "server error or something wrong!"
-
-    return response
+    text = f"For the given statement, the system response is: <br>"
+    for key, value in response.items():
+        text += f"{key} : {value} <br>"
+        
+    return text
 
 @app.route("/")
 def render_index_page():
